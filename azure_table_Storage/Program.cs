@@ -5,11 +5,11 @@ namespace azure_table_Storage
 {
     class Program
     {
-        private static string connection_string ="<Add_your_connection_string>";
+        private static string connection_string ="<Add_Your_Own_ConnectionString>";
         private static string table_name ="archivedata";
 
-        private static string partition_key ="Nellore";
-        private static string row_key ="NR";
+        private static string partition_key ="Kakinada";
+        private static string row_key ="NP";
         
         static void Main(string[] args)
         {
@@ -21,58 +21,77 @@ namespace azure_table_Storage
                 _table.CreateIfNotExists();
                 
                 Console.WriteLine("Table created succecssfully");
-            
-                // #region Insert
-                // Console.WriteLine("Single Table Insert entity.");
 
-                // Employee _employee = new Employee("Potti", "Kakinada", "SN");
-                // TableOperation _tableOperation = TableOperation.Insert(_employee);
-                // TableResult _result = _table.Execute(_tableOperation);
+                // Based on your operation uncomment the below operation and perform it.
 
-                // Console.WriteLine("Ended Single Table Insert entity.");
-                // #endregion Insert
-               
-                // #region BulkOperation
-                // Console.WriteLine("Bulk Insert entities.");
+                // Insert(_table);
+                // BulkOperation(_table);
+                // Update(_table);
+                // RetriveItems(_table);
+                // RetriveAndDelete(_table);
+                
+                Console.WriteLine("Ended Table Storage demo");
+                Console.ReadKey();
+            }
+            catch(Exception ex){
+                throw ex;
+            }
+        }
 
-                // List<Employee> employees = new List<Employee>()
-                // {
-                //     new Employee("Nani", "Nellore", "NS"),
-                //     new Employee("Ramya", "Nellore", "NR"),
-                // };
+         private static void Insert(CloudTable _table)
+         {
+                Console.WriteLine("Single Table Insert entity.");
 
-                // TableBatchOperation _tableBatchOperation = new TableBatchOperation();
-                // foreach(Employee emp in employees)
-                //     _tableBatchOperation.Insert(emp);
+                Employee _employee = new Employee("NaniPotti", "Kakinada", "NP");
+                TableOperation _tableOperation = TableOperation.Insert(_employee);
+                TableResult _result = _table.Execute(_tableOperation);
 
-                // TableBatchResult _result = _table.ExecuteBatch(_tableBatchOperation);
+                Console.WriteLine("Ended Single Table Insert entity.");
+        }
 
-                // Console.WriteLine("Ended Bulk Insert entities.");
-                // #endregion BulkOperation
+        private static void BulkOperation(CloudTable _table)
+        {
+                Console.WriteLine("Bulk Insert entities.");
 
-                // #region RetriveItems
+                List<Employee> employees = new List<Employee>()
+                {
+                    new Employee("Nuthan", "EastGodavari", "NN"),
+                    new Employee("Ramya", "EastGodavari", "SR"),
+                };
 
-                // TableOperation _tableOperation = TableOperation.Retrieve<Employee>(partition_key,row_key);
-                // TableResult _result = _table.Execute(_tableOperation);
+                TableBatchOperation _tableBatchOperation = new TableBatchOperation();
+                foreach(Employee emp in employees)
+                    _tableBatchOperation.Insert(emp);
 
-                // Employee emp = _result.Result as Employee;
+                TableBatchResult _result = _table.ExecuteBatch(_tableBatchOperation);
 
-                // Console.WriteLine($"Employee Name {emp.EmployeeName} and his/her city: {emp.PartitionKey}");
+                Console.WriteLine("Ended Bulk Insert entities.");                
+        }
 
-                // #endregion RetriveItems
+        private static void Update(CloudTable _table)
+        {
 
-            //    #region Update
+                Employee _employee = new Employee("Nani Potti", partition_key, row_key);
+                TableOperation _tableOperation = TableOperation.InsertOrMerge(_employee);
+                TableResult _result = _table.Execute(_tableOperation);
 
-            //     Employee _employee = new Employee("Nani Potti", partition_key, row_key);
-            //     TableOperation _tableOperation = TableOperation.InsertOrMerge(_employee);
-            //     TableResult _result = _table.Execute(_tableOperation);
+                Console.WriteLine("Updated successfully.");
 
-            //     Console.WriteLine("Updated successfully.");
-            //     #endregion Update
+        }
 
-            
-                #region Retrive_and_Delete
+        private static void RetriveItems(CloudTable _table)
+        {           
 
+                TableOperation _tableOperation = TableOperation.Retrieve<Employee>(partition_key,row_key);
+                TableResult _result = _table.Execute(_tableOperation);
+
+                Employee emp = _result.Result as Employee;
+
+                Console.WriteLine($"Employee Name {emp.EmployeeName} and his/her city: {emp.PartitionKey}");
+
+        }
+        private static void RetriveAndDelete(CloudTable _table)
+        {            
                 TableOperation _tableOperation = TableOperation.Retrieve<Employee>(partition_key,row_key);
                 TableResult _result = _table.Execute(_tableOperation);
 
@@ -81,18 +100,7 @@ namespace azure_table_Storage
                 TableOperation _tableDeleteOperation = TableOperation.Delete(emp);
                 TableResult _tableDeleteResult = _table.Execute(_tableDeleteOperation);
 
-                Console.WriteLine($"Employee Name {emp.EmployeeName} and his/her city: {emp.PartitionKey}");
-
-                #endregion Retrive_and_Delete
-
-                Console.WriteLine("Ended Table Storage demo");
-
-            
-                Console.ReadKey();
-            }
-            catch(Exception ex){
-                throw ex;
-            }
+                Console.WriteLine($"Deleted Sucessfull.");
         }
-    }
+    }   
 }
