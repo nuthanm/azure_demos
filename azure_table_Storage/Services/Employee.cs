@@ -5,6 +5,11 @@ namespace azure_table_Storage{
     {
         public string EmployeeName {get; set;}
 
+        public Employee()
+        {
+            // To retrive data from table storage empty constructor is required.
+        }
+
         public Employee(string _employeeName,string _employeeCity, string _eid)
         {
             PartitionKey = _employeeCity;

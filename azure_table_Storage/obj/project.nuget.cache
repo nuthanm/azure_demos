@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yIQKi7giimSs9FCXpZRt+4hy/FthQssUGcXEwASS6A1dDYK3qBEN5PUdyQKT1keb4twaOBwn5Q4NqNmZ/s/m5g==",
+  "dgSpecHash": "pmgf93ATwkBhzGWER13VfojbIjZX2qMhkb2quX4cuJp6hq6cw91YNZu/C+0NGeWBYsgSz+EhtMppU3TaVJIt5A==",
   "success": true,
-  "projectFilePath": "D:\\POCs\\azure_demos\\azure_table_Storage\\azure_table_Storage.csproj",
+  "projectFilePath": "D:\\POCs\\azure_demos\\azure_demos\\azure_table_Storage\\azure_table_Storage.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.azure.cosmos.table\\1.0.8\\microsoft.azure.cosmos.table.1.0.8.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.azure.documentdb.core\\2.11.2\\microsoft.azure.documentdb.core.2.11.2.nupkg.sha512",
