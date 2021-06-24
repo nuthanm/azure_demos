@@ -6395,11 +6395,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\POCs\\azure_demos\\azure_demos\\azure_table_Storage\\azure_table_Storage.csproj",
+      "projectUniqueName": "D:\\POCs\\azure_demos\\azure_demos\\azure_table_storage\\azure_table_Storage.csproj",
       "projectName": "azure_table_Storage",
-      "projectPath": "D:\\POCs\\azure_demos\\azure_demos\\azure_table_Storage\\azure_table_Storage.csproj",
+      "projectPath": "D:\\POCs\\azure_demos\\azure_demos\\azure_table_storage\\azure_table_Storage.csproj",
       "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "D:\\POCs\\azure_demos\\azure_demos\\azure_table_Storage\\obj\\",
+      "outputPath": "D:\\POCs\\azure_demos\\azure_demos\\azure_table_storage\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config"
