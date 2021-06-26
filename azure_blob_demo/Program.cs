@@ -15,7 +15,13 @@ namespace azure_blob_demo
             {
                 // Creete a new container if not exists
                 blobService.CreateContainerIfNotExists();
-                blobService.UploadBlob(@"C:\Users\Administrator\Downloads\template.txt");
+                // blobService.UploadBlob(@"C:\Users\Administrator\Downloads\template.txt");
+                var itemNames = blobService.GetListOfBlobs();
+                
+                foreach(var item in itemNames)
+                {
+                    Console.WriteLine(item);
+                }
             }
             catch(Exception ex)
             {

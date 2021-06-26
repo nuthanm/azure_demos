@@ -1,5 +1,7 @@
 using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
 using System;
+using System.Collections.Generic;
 
 namespace azure_blob_demo
 {
@@ -78,7 +80,27 @@ namespace azure_blob_demo
             {
                 throw ex;
             }
+        }
 
+        public List<string> GetListOfBlobs()
+        {
+            try
+            {
+                List<string> listOfBlobItems = new List<string>();
+                 var _blobServiceClient = CreateBlobServiceClient();
+               
+                 BlobContainerClient _blobContainerClient = _blobServiceClient.GetBlobContainerClient(this.Container);
+
+                 foreach(BlobItem item in _blobContainerClient.GetBlobs())
+                 {
+                     listOfBlobItems.Add(item.Name);                
+                 }
+                 return listOfBlobItems;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
         }
 
