@@ -1,4 +1,6 @@
 using Azure.Storage.Blobs;
+using System;
+
 namespace azure_blob_demo
 {
     public class BlobService
@@ -6,6 +8,8 @@ namespace azure_blob_demo
 
         private string _container;
         private string _connectionString;
+
+        private string _blobName;
 
         public string Container {
              get {
@@ -23,6 +27,15 @@ namespace azure_blob_demo
              
               set{
                   _connectionString = value;
+              }
+        }
+
+        public string BlobName {
+             get {
+                 return _blobName;
+             }             
+              set{
+                  _blobName = value;
               }
         }
 
@@ -45,6 +58,28 @@ namespace azure_blob_demo
                 // Option 3:
                 // _blobServiceClient.CreateBlobContainer(this.Container);
                 // Console.WriteLine("Blob Container Created Successfully");
+        }
+
+        public void UploadBlob(string fileLocation)
+        {
+            try
+            {
+                 var _blobServiceClient = CreateBlobServiceClient();
+               
+                 BlobContainerClient _blobContainerClient = _blobServiceClient.GetBlobContainerClient(this.Container);
+
+                 BlobClient _blobClient = _blobContainerClient.GetBlobClient(this.BlobName);
+
+                _blobClient.Upload(fileLocation);
+
+                 Console.WriteLine("Uploaded blob Successfully.");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
         }
 
         private BlobServiceClient CreateBlobServiceClient()
