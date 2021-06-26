@@ -101,7 +101,26 @@ namespace azure_blob_demo
             {
                 throw ex;
             }
+        }
 
+        public void DownloadBlob(string fileLocation)
+        {
+            try
+            {
+                 var _blobServiceClient = CreateBlobServiceClient();
+               
+                 BlobContainerClient _blobContainerClient = _blobServiceClient.GetBlobContainerClient(this.Container);
+
+                 BlobClient _blobClient = _blobContainerClient.GetBlobClient(this.BlobName);
+
+                _blobClient.DownloadTo(fileLocation);
+
+                 Console.WriteLine("Downloaded blob Successfully.");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private BlobServiceClient CreateBlobServiceClient()
