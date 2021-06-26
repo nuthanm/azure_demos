@@ -11,9 +11,13 @@ To work with these services you need an azure account and as well subscription
 
 **Pacakge to work with Blob Storage**
 
-``` dotnet add package Azure.Storage.Blobs ```
+``` dotnet add package Azure.Storage.Blobs ``` 
 
-Important values are container and connectionstring to connect blob and do operations like
+**Note:** The code samples on azure_blob_demos based on above package with version is ```12.9.1```.
+
+There is another package from **Microsoft** for blob storage which is going to depricated in coming days:  ``` Microsoft.Azure.Storage.Blob ``` and version is ```11.2.2```.
+
+**Important values are container and connectionstring to connect blob and do operations like**
  - Create a container
  - Delete a container
  - Read the container
