@@ -45,3 +45,54 @@ _blobClient.GenerateSasUri(_sasBuilder);
 ~~~
 
 Note: To generate Sas Uri we need BlobClient,BlobContainerClient, BlobServiceClient objects.
+
+
+**Azcopy** is an exe tool which does all the operations like container creation, blob - Upload/Downlaod
+**Offical webiste:** https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10
+
+
+Few sample commands with syntax mentioned below,
+
+Make sure you have the following things to work with the below commands.
+
+1. Download AzCopy exe from official mircosoft
+2. Create your SAS token
+
+~~~
+// To create a container
+Syntax:
+azcopy make "https://<storage_account>.blob.core.windows.net/<New_container_name>?<SAS>"
+~~~
+
+~~~
+// To upload a file
+Syntax:
+azcopy copy <FileName_With_Extension> "https://<storage_account>.blob.core.windows.net/<container_name>/<FileName_With_Extension>?<SAS>"
+~~~
+
+~~~
+// To upload a directory
+azcopy copy "<DirectoryName/*" "https://<storage_account>.blob.core.windows.net/<container_name>?<SAS>"
+~~~
+
+~~~
+// To upload a directory to a directory in a container
+azcopy copy "<DirectoryName/*" "https://<storage_account>.blob.core.windows.net/<container_name>/<BlobDirectory>?<SAS>"
+
+// To upload a directry and subdirectories to a directory in the container
+azcopy copy "<DirectoryName/*" "https://<storage_account>.blob.core.windows.net/<container_name>/<BlobDirectory>?<SAS>" --recursive
+~~~
+
+~~~
+// TO download blob data
+azcopy copy "https://<storage_account>.blob.core.windows.net/<container_name>/<FileName_With_Extension>?<SAS>" "<FileName_With_Extension>"
+
+// Download All
+azcopy copy "https://<storage_account>.blob.core.windows.net/<container_name>/?<SAS>" --recursive
+~~~
+
+~~~
+// Copy data between two storage accounts
+azcopy copy "https://<source_storage_account>.blob.core.windows.net/<container_name>?<Source_SAS>"
+            "https://<destination_storage_account>.blob.core.windows.net/<container_name>?<Dest_SAS>" --recursive
+~~~
