@@ -24,29 +24,6 @@ There is another package from **Microsoft** for blob storage which is going to d
  - Add a blob insider the container
  - Delete a blob from a container
 
-**There are multiple ways to create a container in blob**
-**Option 1:**
- ~~~
- _blobServiceClient.GetBlobContainerClient(this.Container).CreateIfNotExists();>
- ~~~
-
-**Option 2:**
-~~~
-var _container = _blobServiceClient.GetBlobContainerClient(this.Container);
-var isExists = _container.Exists();
-if(!isExists)
-{
-   _container.Create();
-  Console.WriteLine("Blob Container Created Successfully");
-}
-~~~                
-
-**Option 3:**
-~~~
-_blobServiceClient.CreateBlobContainer(this.Container);
-Console.WriteLine("Blob Container Created Successfully");
-~~~
-
 **Package to work with Table storage**
 
 ``` dotnet add package Microsoft.Azure.Cosmos ```
