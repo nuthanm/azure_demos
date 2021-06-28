@@ -7,9 +7,9 @@ namespace azure_blob_demo
         static void Main(string[] args)
         {
             var blobService = new BlobService();
-            blobService.Container ="temp";
-            blobService.ConnectionString ="<Your_Blob_ConnectionString>";
-            blobService.BlobName ="template.txt";
+            blobService.Container = "temp";
+            blobService.ConnectionString = "<Your_Blob_ConnectionString>";
+            blobService.BlobName = "template.txt";
 
             try
             {
@@ -17,15 +17,15 @@ namespace azure_blob_demo
                 blobService.CreateContainerIfNotExists();
                 // blobService.UploadBlob(@"C:\Users\Administrator\Downloads\template.txt");
                 var itemNames = blobService.GetListOfBlobs();
-                
-                foreach(var item in itemNames)
+
+                foreach (var item in itemNames)
                 {
-                    Console.WriteLine(item);                    
+                    Console.WriteLine(item);
                 }
 
                 blobService.DownloadBlob($@"C:\Users\Administrator\Downloads\{blobService.BlobName}");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine("Blob Container Fail to create." + ex.Message);
             }

@@ -13,68 +13,77 @@ namespace azure_blob_demo
 
         private string _blobName;
 
-        public string Container {
-             get {
-                 return _container;
-             }             
-              set{
-                  _container = value;
-              }
+        public string Container
+        {
+            get
+            {
+                return _container;
+            }
+            set
+            {
+                _container = value;
+            }
         }
 
-        public string ConnectionString {
-             get {
-                 return _connectionString;
-             }
-             
-              set{
-                  _connectionString = value;
-              }
+        public string ConnectionString
+        {
+            get
+            {
+                return _connectionString;
+            }
+
+            set
+            {
+                _connectionString = value;
+            }
         }
 
-        public string BlobName {
-             get {
-                 return _blobName;
-             }             
-              set{
-                  _blobName = value;
-              }
+        public string BlobName
+        {
+            get
+            {
+                return _blobName;
+            }
+            set
+            {
+                _blobName = value;
+            }
         }
 
         public void CreateContainerIfNotExists()
         {
-            var _blobServiceClient = CreateBlobServiceClient();            
-            
-                // Option 1:
-                 _blobServiceClient.GetBlobContainerClient(this.Container).CreateIfNotExists();
+            var _blobServiceClient = CreateBlobServiceClient();
 
-                // Option 2:
-                // var _container = _blobServiceClient.GetBlobContainerClient(this.Container);
-                // var isExists = _container.Exists();
-                // if(!isExists)
-                // {
-                //     _container.Create();
-                //     Console.WriteLine("Blob Container Created Successfully");
-                // }
-                
-                // Option 3:
-                // _blobServiceClient.CreateBlobContainer(this.Container);
-                // Console.WriteLine("Blob Container Created Successfully");
+            // Option 1:
+            _blobServiceClient.GetBlobContainerClient(this.Container).CreateIfNotExists();
+
+            // Option 2:
+            // var _container = _blobServiceClient.GetBlobContainerClient(this.Container);
+            // var isExists = _container.Exists();
+            // if(!isExists)
+            // {
+            //     _container.Create();
+            //     Console.WriteLine("Blob Container Created Successfully");
+            // }
+
+            // Option 3:
+            // _blobServiceClient.CreateBlobContainer(this.Container);
+            // Console.WriteLine("Blob Container Created Successfully");
         }
 
         public void UploadBlob(string fileLocation)
         {
             try
             {
-                 var _blobServiceClient = CreateBlobServiceClient();
-               
-                 BlobContainerClient _blobContainerClient = _blobServiceClient.GetBlobContainerClient(this.Container);
+                var _blobServiceClient = CreateBlobServiceClient();
 
-                 BlobClient _blobClient = _blobContainerClient.GetBlobClient(this.BlobName);
+                BlobContainerClient _blobContainerClient = _blobServiceClient.GetBlobContainerClient(this.Container);
+
+                BlobClient _blobClient = _blobContainerClient.GetBlobClient(this.BlobName);
 
                 _blobClient.Upload(fileLocation);
 
-                 Console.WriteLine("Uploaded blob Successfully.");
+                Console.WriteLine("Uploaded blob Successfully.");
             }
             catch (Exception ex)
             {
@@ -87,15 +96,15 @@ namespace azure_blob_demo
             try
             {
                 List<string> listOfBlobItems = new List<string>();
-                 var _blobServiceClient = CreateBlobServiceClient();
-               
-                 BlobContainerClient _blobContainerClient = _blobServiceClient.GetBlobContainerClient(this.Container);
+                var _blobServiceClient = CreateBlobServiceClient();
 
-                 foreach(BlobItem item in _blobContainerClient.GetBlobs())
-                 {
-                     listOfBlobItems.Add(item.Name);                
-                 }
-                 return listOfBlobItems;
+                BlobContainerClient _blobContainerClient = _blobServiceClient.GetBlobContainerClient(this.Container);
+
+                foreach (BlobItem item in _blobContainerClient.GetBlobs())
+                {
+                    listOfBlobItems.Add(item.Name);
+                }
+                return listOfBlobItems;
             }
             catch (Exception ex)
             {
@@ -107,15 +116,15 @@ namespace azure_blob_demo
         {
             try
             {
-                 var _blobServiceClient = CreateBlobServiceClient();
-               
-                 BlobContainerClient _blobContainerClient = _blobServiceClient.GetBlobContainerClient(this.Container);
+                var _blobServiceClient = CreateBlobServiceClient();
 
-                 BlobClient _blobClient = _blobContainerClient.GetBlobClient(this.BlobName);
+                BlobContainerClient _blobContainerClient = _blobServiceClient.GetBlobContainerClient(this.Container);
+
+                BlobClient _blobClient = _blobContainerClient.GetBlobClient(this.BlobName);
 
                 _blobClient.DownloadTo(fileLocation);
 
-                 Console.WriteLine("Downloaded blob Successfully.");
+                Console.WriteLine("Downloaded blob Successfully.");
             }
             catch (Exception ex)
             {
@@ -125,7 +134,7 @@ namespace azure_blob_demo
 
         private BlobServiceClient CreateBlobServiceClient()
         {
-            return new BlobServiceClient(this.ConnectionString);            
-        }        
+            return new BlobServiceClient(this.ConnectionString);
+        }
     }
 }
