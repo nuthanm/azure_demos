@@ -11,37 +11,18 @@ To work with these services you need an azure account and as well subscription
 
 **Pacakge to work with Blob Storage**
 
-``` dotnet add package Azure.Storage.Blobs ```
+``` dotnet add package Azure.Storage.Blobs ``` 
 
-Important values are container and connectionstring to connect blob and do operations like
+**Note:** The code samples on azure_blob_demos based on above package with version is ```12.9.1```.
+
+There is another package from **Microsoft** for blob storage which is going to depricated in coming days:  ``` Microsoft.Azure.Storage.Blob ``` and version is ```11.2.2```.
+
+**Important values are container and connectionstring to connect blob and do operations like**
  - Create a container
  - Delete a container
  - Read the container
  - Add a blob insider the container
  - Delete a blob from a container
-
-**There are multiple ways to create a container in blob**
-**Option 1:**
- ~~~
- _blobServiceClient.GetBlobContainerClient(this.Container).CreateIfNotExists();>
- ~~~
-
-**Option 2:**
-~~~
-var _container = _blobServiceClient.GetBlobContainerClient(this.Container);
-var isExists = _container.Exists();
-if(!isExists)
-{
-   _container.Create();
-  Console.WriteLine("Blob Container Created Successfully");
-}
-~~~                
-
-**Option 3:**
-~~~
-_blobServiceClient.CreateBlobContainer(this.Container);
-Console.WriteLine("Blob Container Created Successfully");
-~~~
 
 **Package to work with Table storage**
 
@@ -71,3 +52,5 @@ Before actually known about this Azure cosmos DB. First breif about this **Cosmo
  - Also supports many API's - SQL,MongoDB, Cassandra, Tables, Germlin
  - No need to bother about infrastructure like VM - Its a fully serverless service.
 
+**Official site for Notification hubs**
+https://docs.microsoft.com/en-us/azure/notification-hubs/notification-hubs-windows-store-dotnet-get-started-wns-push-notification
